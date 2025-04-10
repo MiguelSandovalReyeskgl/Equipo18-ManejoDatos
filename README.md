@@ -64,7 +64,7 @@ Este proyecto consiste en una aplicación en Java con interfaz gráfica (JFrame)
 
 ## Enlace al video de demostración
 
- [Ver video en YouTube]:    https://youtu.be/fMSa7-YgOi4
+   -https://youtu.be/fMSa7-YgOi4
 
 ---
 
