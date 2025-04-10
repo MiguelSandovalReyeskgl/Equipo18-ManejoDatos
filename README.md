@@ -87,21 +87,91 @@ Convierte un archivo .csv en .txt, uniendo los valores de cada línea con espaci
 
 ---
 
-##  Estructura del Código:
+## Estructura del proyecto
 
-###  Componentes principales
+El proyecto se compone de dos clases principales:
 
-- `btnExportarActionPerformed`:  
-  Método que gestiona el guardado de archivos desde el área de texto en el formato seleccionado por el usuario.
+- ManejadorArchivos: Funcionalidad para manipular archivos y convertir formatos.
+- Registro: Representación de un registro de datos genérico utilizado para almacenamiento o visualización.
+---
+##  Clases y métodos
 
-- `btnConvertirActionPerformed`:  
-  Método que permite convertir un archivo existente de un formato a otro (entre `.txt`, `.csv`, `.json`).
+### ManejadorArchivos.java
+Clase estática con funciones para manejo de archivos.
 
-###  Variables importantes:
+#### Lectura/Escritura
 
-- `txtRuta`: Campo de texto para ingresar o mostrar la ruta del archivo.
-- `txtArea`: Área de texto donde se escribe o carga el contenido.
-- `OpTxt`, `OpCSV`, `OpJSON`: Radio buttons que permiten al usuario elegir el tipo de archivo.
+- leerArchivoTexto(String ruta)
+- escribirArchivoTexto(String ruta, String contenido)
+- agregarTextoArchivo(String ruta, String contenido)
+
+#### CSV
+
+- leerArchivoCSV(String ruta)
+- leerArchivoCSVConCabeceras(String ruta)
+- escribirArchivoCSV(String ruta, List<String[]> datos)
+
+#### JSON
+
+- leerArchivoJSON(String ruta)
+- escribirArchivoJSON(String ruta, Map<String, Object> datos)
+- parsearJSON(String json)
+- convertirJSON(Map<String, Object> datos)
+
+#### Conversiones
+
+- convertirCSVaJSON(String archivoCSV, String archivoJSON)
+- convertirJSONaCSV(String archivoJSON, String archivoCSV)
+- convertirTextoACSV(String archivoTexto, String archivoCSV)
+- convertirCSVaTXT(String archivoCSV, String archivoTXT)
+
+---
+Clase Registro
+Descripción general
+La clase Registro representa un registro genérico con campos dinámicos, útil para almacenar estructuras provenientes de formularios o archivos.
+
+Atributos
+Atributo	Tipo	Descripción
+campo	Map<String, String>
+
+
+Constructores
+
+public Registro(String... datos)
+Genera campos dinámicamente como campo1, campo2, etc.
+
+public Registro(Map<String, String> mapa)
+Permite crear un registro directamente desde un Map.
+
+Métodos
+
+public Map<String, String> getCampos()
+Devuelve el mapa con los campos.
+
+public String toString()
+Devuelve el contenido del registro como una cadena estilo JSON.
+
+JFrame de ejemplo
+Dependencias
+
+import Libreriass.ManejadorArchivos;
+import Libreriass.Registro;
+
+Ejemplo básico de uso
+
+// Leer archivo CSV
+List<String[]> datos = ManejadorArchivos.leerArchivoCSV("usuarios.csv");
+
+// Convertir a JSON
+ManejadorArchivos.convertirCSVaJSON("usuarios.csv", "usuarios.json");
+
+// Leer JSON como mapa
+Map<String, Object> mapa = ManejadorArchivos.leerArchivoJSON("usuarios.json");
+
+// Crear registros
+Registro registro = new Registro("Juan", "Pérez", "juan@correo.com");
+System.out.println(registro.toString());
+
 
 ###  Validaciones implementadas:
 
