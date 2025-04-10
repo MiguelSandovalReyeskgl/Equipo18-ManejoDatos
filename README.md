@@ -13,7 +13,72 @@
 Este proyecto consiste en una aplicación en Java con interfaz gráfica (JFrame) que permite **exportar y convertir archivos** entre los formatos `.txt`, `.csv` y `.json`. La herramienta está pensada como una utilidad sencilla para gestionar y transformar datos en distintos formatos populares, sin necesidad de librerías externas.
 
 ---
+### Descripción general
 
+La clase ManejadorArchivos implementa métodos estáticos para:
+
+- Leer y escribir archivos de texto plano.
+- Leer y escribir archivos CSV y JSON.
+- Convertir entre formatos CSV, JSON y TXT.
+- Parsear estructuras JSON simples sin bibliotecas externas.
+- Validaciones: La aplicación valida rutas vacías, extensiones repetidas, errores de lectura/escritura, y más.
+#### Lectura y escritura de texto
+
+```java
+public static String leerArchivoTexto(String ruta)
+Lee el contenido completo de un archivo .txt.
+
+
+public static void escribirArchivoTexto(String ruta, String contenido)
+Sobrescribe el contenido de un archivo .txt.
+
+
+public static void agregarTextoArchivo(String ruta, String contenido)
+Agrega contenido al final de un archivo de texto.
+
+Manejo de CSV
+
+public static List<String[]> leerArchivoCSV(String ruta)
+Lee un archivo .csv línea por línea, devolviendo una lista de arreglos de cadenas.
+
+
+public static void escribirArchivoCSV(String ruta, List<String[]> datos)
+Escribe una lista de datos en un archivo .csv.
+
+
+public static List<Map<String, String>> leerArchivoCSVConCabeceras(String ruta)
+Lee un .csv con cabeceras, devolviendo una lista de mapas (clave = cabecera, valor = celda).
+
+Manejo de JSON
+
+public static Map<String, Object> leerArchivoJSON(String ruta)
+Lee un archivo .json y lo transforma en un Map.
+
+
+public static void escribirArchivoJSON(String ruta, Map<String, Object> datos)
+Escribe un Map como archivo .json.
+
+
+public static Map<String, Object> parsearJSON(String json)
+Parsea manualmente una cadena JSON en un Map.
+
+
+public static String convertirJSON(Map<String, Object> datos)
+Convierte un Map en una cadena JSON.
+
+Conversión entre formatos
+
+public static void convertirCSVaJSON(String archivoCSV, String archivoJSON)
+Transforma un archivo CSV a JSON, respetando cabeceras.
+
+public static void convertirJSONaCSV(String archivoJSON, String archivoCSV)
+Convierte un archivo JSON a CSV (si contiene una lista bajo la clave "datos").
+
+public static void convertirTextoACSV(String archivoTexto, String archivoCSV)
+Transforma un archivo .txt en un .csv con una columna por línea.
+
+public static void convertirCSVaTXT(String archivoCSV, String archivoTXT)
+Convierte un archivo .csv en .txt, uniendo los valores de cada línea con espacios.
 ##  Funcionalidades principales
 
 - **Exportación:** Guarda el contenido escrito en un `JTextArea` en formato `.txt`, `.csv` o `.json`.
